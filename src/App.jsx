@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
-import './App.css';
-
-// projenin tasarımı tamamen ben yaptım zamanım kalmadığı ve sadece tasarım atmak istemediğim için jsx kodlarını react.dev'den aldım
-// react.dev'den aldıgım kodlar tamamen figmaya uygun değildi biraz kurcalamam gerekti ama dediğim gibi kodlar tamamen bana ait değil
+import "./App.css";
 
 const crossImage = "/images/cross.png";
 const circleImage = "/images/circle.png";
@@ -11,10 +8,14 @@ const restartImage = "/images/restart.png";
 function Square({ value, onSquareClick, highlight }) {
   return (
     <button
-      className={`square ${value ? 'disabled' : ''}`}
+      className={`square ${value ? "disabled" : ""}`}
       onClick={onSquareClick}
       style={{
-        backgroundColor: highlight ? (value === crossImage ? '#31C3BD' : '#F2B137') : '',
+        backgroundColor: highlight
+          ? value === crossImage
+            ? "#31C3BD"
+            : "#F2B137"
+          : "",
       }}
     >
       {value && <img src={value} alt="" />}
@@ -61,7 +62,12 @@ function Board({ xIsNext, squares, onPlay, resetGame, crossWins, circleWins }) {
     setIsModalOpen(false);
   }
 
-  const textColor = winner === crossImage ? '#31C3BD' : (winner === circleImage ? '#F2B137' : 'black');
+  const textColor =
+    winner === crossImage
+      ? "#31C3BD"
+      : winner === circleImage
+      ? "#F2B137"
+      : "black";
 
   return (
     <>
@@ -78,21 +84,57 @@ function Board({ xIsNext, squares, onPlay, resetGame, crossWins, circleWins }) {
 
       <div className="allBoards">
         <div className="board-row">
-          <Square value={squares[0]} onSquareClick={() => handleClick(0)} highlight={winningSquares.includes(0)} />
-          <Square value={squares[1]} onSquareClick={() => handleClick(1)} highlight={winningSquares.includes(1)} />
-          <Square value={squares[2]} onSquareClick={() => handleClick(2)} highlight={winningSquares.includes(2)} />
+          <Square
+            value={squares[0]}
+            onSquareClick={() => handleClick(0)}
+            highlight={winningSquares.includes(0)}
+          />
+          <Square
+            value={squares[1]}
+            onSquareClick={() => handleClick(1)}
+            highlight={winningSquares.includes(1)}
+          />
+          <Square
+            value={squares[2]}
+            onSquareClick={() => handleClick(2)}
+            highlight={winningSquares.includes(2)}
+          />
         </div>
 
         <div className="board-row">
-          <Square value={squares[3]} onSquareClick={() => handleClick(3)} highlight={winningSquares.includes(3)} />
-          <Square value={squares[4]} onSquareClick={() => handleClick(4)} highlight={winningSquares.includes(4)} />
-          <Square value={squares[5]} onSquareClick={() => handleClick(5)} highlight={winningSquares.includes(5)} />
+          <Square
+            value={squares[3]}
+            onSquareClick={() => handleClick(3)}
+            highlight={winningSquares.includes(3)}
+          />
+          <Square
+            value={squares[4]}
+            onSquareClick={() => handleClick(4)}
+            highlight={winningSquares.includes(4)}
+          />
+          <Square
+            value={squares[5]}
+            onSquareClick={() => handleClick(5)}
+            highlight={winningSquares.includes(5)}
+          />
         </div>
 
         <div className="board-row">
-          <Square value={squares[6]} onSquareClick={() => handleClick(6)} highlight={winningSquares.includes(6)} />
-          <Square value={squares[7]} onSquareClick={() => handleClick(7)} highlight={winningSquares.includes(7)} />
-          <Square value={squares[8]} onSquareClick={() => handleClick(8)} highlight={winningSquares.includes(8)} />
+          <Square
+            value={squares[6]}
+            onSquareClick={() => handleClick(6)}
+            highlight={winningSquares.includes(6)}
+          />
+          <Square
+            value={squares[7]}
+            onSquareClick={() => handleClick(7)}
+            highlight={winningSquares.includes(7)}
+          />
+          <Square
+            value={squares[8]}
+            onSquareClick={() => handleClick(8)}
+            highlight={winningSquares.includes(8)}
+          />
         </div>
       </div>
 
@@ -100,7 +142,9 @@ function Board({ xIsNext, squares, onPlay, resetGame, crossWins, circleWins }) {
         <div className="modal">
           <div className="modal-content">
             <h2 style={{ color: textColor }}>
-              {winner === crossImage ? "X TAKES THE ROUND" : "O TAKES THE ROUND"}
+              {winner === crossImage
+                ? "X TAKES THE ROUND"
+                : "O TAKES THE ROUND"}
             </h2>
             <div className="modal-buttons">
               <span className="quit" onClick={handleQuit}>
@@ -115,9 +159,13 @@ function Board({ xIsNext, squares, onPlay, resetGame, crossWins, circleWins }) {
       )}
 
       <div className="scoreboard">
-        <div className="score crossWins"><p>X WINS</p> <h3>{crossWins}</h3></div>
+        <div className="score crossWins">
+          <p>X WINS</p> <h3>{crossWins}</h3>
+        </div>
         <div className="score"></div>
-        <div className="score circleWins"><p>O WINS</p> <h3>{circleWins}</h3></div>
+        <div className="score circleWins">
+          <p>O WINS</p> <h3>{circleWins}</h3>
+        </div>
       </div>
     </>
   );
